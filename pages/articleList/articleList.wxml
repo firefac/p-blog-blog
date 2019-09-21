@@ -1,0 +1,20 @@
+<wxs module="dateUtil" src="../../utils/timeUtil.wxs"></wxs>
+
+<view class="container">
+  <view class="banner">
+    <image src="{{label.coverUrl}}" background-size="cover"></image>
+  </view>
+  <navigator url="../article/article?id={{item.id}}" wx:for="{{articleList}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+    <van-card
+      desc="{{dateUtil.dateFormat(item.createTime)}}"
+      title="{{item.title}}"
+      thumb="{{item.coverUrl}}"
+      thumb-mode="aspectFill"
+      tag="{{item.hot === 1 ? '推荐' : ''}}">
+      <view slot="footer">
+        <van-button size="mini">按钮</van-button>
+        <van-button size="mini">按钮</van-button>
+      </view>
+    </van-card>
+  </navigator>
+</view>

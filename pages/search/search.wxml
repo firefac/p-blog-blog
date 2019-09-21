@@ -1,0 +1,40 @@
+<scroll-view class="container" style="height: 100%;">
+  <view class="search-header">
+    <view class="input-box">
+      <image class="icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/search2-2fb94833aa.png"></image>
+      <input name="input" class="keywrod" focus="true" value="{{keyword}}" confirm-type="search" bindfocus="inputFocus" bindconfirm="onKeywordConfirm" placeholder="{{defaultKeyword.keyword}}" />
+      <image class="del" wx:if="{{keyword}}" bindtap="clearKeyword" src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/clearIpt-f71b83e3c2.png"></image>
+    </view>
+    <view class="right" bindtap="closeSearch">取消</view>
+  </view>
+  <view class="no-search" wx:if="{{ !searchStatus}}">
+    <view class="shelper-list" wx:if="{{lableList.length > 0}}">
+      <view class="item" hover-class="navigator-hover" wx:for="{{lableList}}" wx:key="id" bindtap="onKeywordTap" data-keyword="{{item}}">{{item.name}}</view>
+    </view>
+  </view>
+
+  <view class="search-result" wx:if="{{ searchStatus && articleList.length}}">
+    <view class="cate-item">
+      <view class="b">
+        <navigator url="../article/article?id={{article.id}}" wx:for="{{articleList}}" wx:for-item="article" wx:key="articleId">
+          <van-card
+            desc="{{dateUtil.dateFormat(article.createTime)}}"
+            title="{{article.title}}"
+            thumb="{{article.coverUrl}}"
+            thumb-mode="aspectFill"
+            tag="{{article.hot === 1 ? '推荐' : ''}}">
+          <view slot="footer">
+            <van-button size="mini">分享</van-button>
+            <van-button size="mini">收藏</van-button>
+          </view>
+          </van-card>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
+  <view class="search-result-empty" wx:if="{{!articleList.length && searchStatus}}">
+    <image class="icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noSearchResult-7572a94f32.png"></image>
+    <text class="text">您寻找的文章还未发布</text>
+  </view>
+</scroll-view>

@@ -1,0 +1,16 @@
+<wxs module="dateUtil" src="../../utils/timeUtil.wxs"></wxs>
+
+<view wx:if="{{article.type == 2}}" >
+  <web-view src="{{article.jumpInfo}}" />
+</view>
+<view class="container" wx:elif="{{article.type == 1}}">
+  <view class="title">{{article.title}}</view>
+  <view class="sub-title">
+    <text wx:if="{{article.author != null}}">作者：{{article.author}}</text>
+    <text style="padding-left:50rpx;">{{dateUtil.dateFormat(article.createTime)}}</text>
+  </view>
+
+  <import src="/lib/wxParse/wxParse.wxml" />
+  <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
+</view>
+

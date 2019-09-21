@@ -1,0 +1,23 @@
+.container{
+  padding: 50rpx 30rpx;
+}
+
+view text{
+  font-size: 34rpx;
+}
+
+.title{
+  font-weight: bold;
+  font-size: 40rpx;
+}
+
+.sub-title {
+  padding: 20rpx 0rpx 50rpx 0rpx;
+}
+
+.sub-title text{
+  font-size: 32rpx;
+  color: #7d7e80;
+}
+
+@import '../../lib/wxParse/wxParse.wxss'

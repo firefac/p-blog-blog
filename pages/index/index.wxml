@@ -1,0 +1,62 @@
+<wxs module="dateUtil" src="../../utils/timeUtil.wxs"></wxs>
+
+<!--index.wxml-->
+<view class="container">
+  <view class="search">
+    <navigator url="/pages/ucenter/index/index">
+      <van-icon  name="contact" size="45rpx" />
+    </navigator>
+    <navigator url="/pages/search/search" class="input">
+      <image class="icon"></image>
+      <text class="txt">搜索</text>
+    </navigator>
+  </view>
+  <van-tabs sticky  bind:change="switchCate" swipeable color="#AB956D">
+    <van-tab title="推荐">
+      <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+        <swiper-item wx:for="{{hotArticles}}" wx:key="id">
+          <image src="{{item.url}}" background-size="cover" data-banner="{{item}}" bindtap="naviToBanner"></image>
+        </swiper-item>
+      </swiper>
+      <view style="padding-bottom: 8rpx;" wx:for="{{articles}}" wx:for-item="item" wx:key="id">
+        <van-card
+          desc="{{dateUtil.dateFormat(item.createTime)}}"
+          title="{{item.title}}"
+          thumb="{{item.coverUrl}}"
+          thumb-mode="aspectFill"
+          thumb-link="../article/article?id={{item.id}}"
+          tag="{{item.hot === 1 ? '推荐' : ''}}">
+          <view slot="footer">
+            <van-button size="small">分享</van-button>
+            <van-button size="small" wx:if="{{item.collected == 0}}" data-article="{{item}}" bindtap="collectArticle">收藏</van-button>
+            <van-button size="small" wx:if="{{item.collected == 1}}" data-article="{{item}}" bindtap="uncollectArticle">取消收藏</van-button>
+          </view>
+        </van-card>
+      </view>
+    </van-tab>
+    <van-tab title="{{item.name}}"  wx:for="{{groups}}" wx:key="id"  wx:for-item="item" >
+      <view class="cate-item a-section a-new">
+        <view class="label-container">
+          <van-button type="{{label.active ? 'info' : 'default'}}" color="#7232dd" class="label" size="small" bindtap="choseLabel"
+            wx:for="{{item.labels}}" wx:key="labelId" wx:for-item="label" data-label="{{label}}">
+            {{label.name}}
+          </van-button>
+        </view>
+        <view class="b" style="padding-bottom: 8rpx;" wx:for="{{item.articleList}}" wx:for-item="article" wx:key="articleId">
+          <van-card
+            desc="{{dateUtil.dateFormat(article.createTime)}}"
+            title="{{article.title}}"
+            thumb="{{article.coverUrl}}"
+            thumb-mode="aspectFill"
+            thumb-link="../article/article?id={{article.id}}"
+            tag="{{article.hot === 1 ? '推荐' : ''}}">
+          <view slot="footer">
+            <van-button size="mini">分享</van-button>
+            <van-button size="mini">收藏</van-button>
+          </view>
+          </van-card>
+        </view>
+      </view>
+    </van-tab>
+  </van-tabs>
+</view>
