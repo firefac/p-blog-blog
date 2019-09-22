@@ -5,6 +5,7 @@ Page({
   data: {
     articleList: [],
     labelId: 0,
+    labelName: '',
     label: {},
     pageNum: 1,
     pageSize: 10,
@@ -21,11 +22,29 @@ Page({
 
     if(options.labelName){
       wx.setNavigationBarTitle({title: options.labelName})
+      that.setData({
+        labelName: options.labelName
+      })
     }
 
     this.getarticleList();
     this.getLabel()
 
+  },
+  onShareAppMessage: function(res) {
+    if (res.from === 'button') {
+      var article = res.target.dataset.article
+      return {
+        title: article.title,
+        imageUrl: article.coverUrl,
+        path: '/pages/article/article?id=' + article.id
+      }
+    }
+
+    return {
+      title: '来架构师的小院，喝喝茶，谈谈技术',
+      path: '/pages/articleList/articleList?labelId=' + this.data.labelId + '&labelName' + this.data.labelName
+    }
   },
   onReady: function() {
     // 页面渲染完成
@@ -87,5 +106,43 @@ Page({
   },
   onUnload: function() {
     // 页面关闭
+  },
+  collectArticle: function(event) {
+    var article = event.target.dataset.article
+
+    let that = this;
+    util.request(api.ArticleCollect, {
+      action: 1,
+      articleId: article.id
+    }, "POST")
+    .then(function(res) {
+      if (res.errcode === '0') {
+        that.refreshCollectionState(article, 1)
+      }
+    }); 
+  },
+  uncollectArticle: function(event) {
+    var article = event.target.dataset.article
+
+    let that = this;
+    util.request(api.ArticleCollect, {
+      action: 0,
+      articleId: article.id
+    }, "POST")
+    .then(function(res) {
+      if (res.errcode === '0') {
+        that.refreshCollectionState(article, 0)
+      }
+    });
+  },
+  refreshCollectionState: function(article, collected){
+    for(var i = 0; i < this.data.articleList.length; i++){
+      if(article.id == this.data.articleList[i].id){
+        this.data.articleList[i].collected = collected
+      }
+    }
+    this.setData({
+      articleList: this.data.articleList
+    })
   }
 })

@@ -15,10 +15,18 @@ Page({
     pageSize: 10,
     lastPage: false
   },
-  onShareAppMessage: function() {
+  onShareAppMessage: function(res) {
+    if (res.from === 'button') {
+      var article = res.target.dataset.article
+      return {
+        title: article.title,
+        imageUrl: article.coverUrl,
+        path: '/pages/article/article?id=' + article.id
+      }
+    }
+
     return {
-      title: '互联网千篇一律，为什么不让TA充满个性',
-      desc: '互联网千篇一律，为什么不让TA充满个性',
+      title: '来架构师的小院，喝喝茶，谈谈技术',
       path: '/pages/index/index'
     }
   },
@@ -53,16 +61,11 @@ Page({
     let that = this;
     util.request(api.ArticleCollect, {
       action: 1,
-      articleId: article.id,
-      pageNum: this.pageNum,
-      pageSize: this.pageSize
+      articleId: article.id
     }, "POST")
     .then(function(res) {
       if (res.errcode === '0') {
-        article.collected = 1
-        that.setData({
-          articles: that.data.articles
-        })
+        that.refreshCollectionState(article, 1)
       }
     }); 
   },
@@ -72,18 +75,36 @@ Page({
     let that = this;
     util.request(api.ArticleCollect, {
       action: 0,
-      articleId: article.id,
-      pageNum: this.pageNum,
-      pageSize: this.pageSize
+      articleId: article.id
     }, "POST")
     .then(function(res) {
       if (res.errcode === '0') {
-        article.collected = 0
-        that.setData({
-          articles: that.data.articles
-        })
+        that.refreshCollectionState(article, 0)
       }
     });
+  },
+  refreshCollectionState: function(article, collected){
+    for(var i = 0; i < this.data.articles.length; i++){
+      if(article.id == this.data.articles[i].id){
+        this.data.articles[i].collected = collected
+      }
+    }
+
+    for(var i = 0; i < this.data.groups.length; i++){
+      var articleList = this.data.groups[i].articleList
+      if(articleList == undefined || articleList == null){
+        continue
+      }
+      for(var j = 0; j < articleList.length; j++){
+        if(article.id == articleList[j].id){
+          articleList[j].collected = collected
+        }
+      }
+    }
+    this.setData({
+      articles: this.data.articles,
+      groups: this.data.groups
+    })
   },
   getHotArticlesList: function() {
     let that = this;

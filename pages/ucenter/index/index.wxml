@@ -32,9 +32,9 @@
           thumb-mode="aspectFill"
           thumb-link="../../article/article?id={{item.id}}">
           <view slot="footer">
-            <van-button size="small">分享</van-button>
-            <van-button size="small" wx:if="{{item.collected == 0}}" data-article="{{item}}" bindtap="collectArticle">收藏</van-button>
-            <van-button size="small" wx:if="{{item.collected == 1}}" data-article="{{item}}" bindtap="uncollectArticle">取消收藏</van-button>
+            <button class="share-btn" data-article="{{item}}" open-type="share">
+              <van-button size="mini" icon="share"/>
+            </button>
           </view>
         </van-card>
       </view>
@@ -46,6 +46,11 @@
           thumb="{{item.coverUrl}}"
           thumb-mode="aspectFill"
           thumb-link="../../article/article?id={{item.id}}">
+          <view slot="footer">
+            <button class="share-btn" data-article="{{item}}" open-type="share">
+              <van-button size="mini" icon="share"/>
+            </button>
+        </view>
         </van-card>
       </view>
     </van-tab>

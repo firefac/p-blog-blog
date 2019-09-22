@@ -9,26 +9,33 @@
   </view>
   <view class="no-search" wx:if="{{ !searchStatus}}">
     <view class="shelper-list" wx:if="{{lableList.length > 0}}">
-      <view class="item" hover-class="navigator-hover" wx:for="{{lableList}}" wx:key="id" bindtap="onKeywordTap" data-keyword="{{item}}">{{item.name}}</view>
+      <view class="item" hover-class="navigator-hover" wx:for="{{lableList}}" wx:key="id" bindtap="onKeywordTap" data-keyword="{{item}}">
+        {{item.name}}
+      </view>
     </view>
   </view>
 
   <view class="search-result" wx:if="{{ searchStatus && articleList.length}}">
     <view class="cate-item">
       <view class="b">
-        <navigator url="../article/article?id={{article.id}}" wx:for="{{articleList}}" wx:for-item="article" wx:key="articleId">
-          <van-card
-            desc="{{dateUtil.dateFormat(article.createTime)}}"
-            title="{{article.title}}"
-            thumb="{{article.coverUrl}}"
-            thumb-mode="aspectFill"
-            tag="{{article.hot === 1 ? '推荐' : ''}}">
+        <van-card
+          desc="{{dateUtil.dateFormat(article.createTime)}}"
+          title="{{article.title}}"
+          thumb="{{article.coverUrl}}"
+          thumb-mode="aspectFill"
+          thumb-link="../article/article?id={{item.id}}"
+          tag="{{article.hot === 1 ? '推荐' : ''}}"
+          wx:for="{{articleList}}" wx:for-item="article" wx:key="articleId">
           <view slot="footer">
-            <van-button size="mini">分享</van-button>
-            <van-button size="mini">收藏</van-button>
+            <button class="share-btn" data-article="{{article}}" open-type="share">
+              <van-button size="mini" icon="share"/>
+            </button>
+            <view class="share-btn">
+              <van-button size="mini" icon="star-o" wx:if="{{article.collected == 0}}" data-article="{{article}}" bindtap="collectArticle"/>
+              <van-button size="mini" icon="star" wx:if="{{article.collected == 1}}" data-article="{{article}}" bindtap="uncollectArticle"/>
+            </view>
           </view>
-          </van-card>
-        </navigator>
+        </van-card>
       </view>
     </view>
   </view>

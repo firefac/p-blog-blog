@@ -3,6 +3,7 @@
   "usingComponents": {
     "van-card": "../../lib/card/index",
     "van-button": "../../lib/button/index",
-    "van-icon": "../../lib/icon/index"
+    "van-icon": "../../lib/icon/index",
+    "van-tag": "../../lib/tag/index"
   }
 }

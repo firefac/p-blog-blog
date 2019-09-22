@@ -13,6 +13,21 @@ Page({
     pageSize: 20,
     lastPage: false
   },
+  onShareAppMessage: function(res) {
+    if (res.from === 'button') {
+      var article = res.target.dataset.article
+      return {
+        title: article.title,
+        imageUrl: article.coverUrl,
+        path: '/pages/article/article?id=' + article.id
+      }
+    }
+
+    return {
+      title: '来架构师的小院，喝喝茶，谈谈技术',
+      path: '/pages/index/index'
+    }
+  },
   //事件处理函数
   closeSearch: function() {
     wx.navigateBack()
@@ -99,5 +114,43 @@ Page({
   },
   onKeywordConfirm(event) {
     this.getSearchResult(event.detail.value);
+  },
+  collectArticle: function(event) {
+    var article = event.target.dataset.article
+
+    let that = this;
+    util.request(api.ArticleCollect, {
+      action: 1,
+      articleId: article.id
+    }, "POST")
+    .then(function(res) {
+      if (res.errcode === '0') {
+        that.refreshCollectionState(article, 1)
+      }
+    }); 
+  },
+  uncollectArticle: function(event) {
+    var article = event.target.dataset.article
+
+    let that = this;
+    util.request(api.ArticleCollect, {
+      action: 0,
+      articleId: article.id
+    }, "POST")
+    .then(function(res) {
+      if (res.errcode === '0') {
+        that.refreshCollectionState(article, 0)
+      }
+    });
+  },
+  refreshCollectionState: function(article, collected){
+    for(var i = 0; i < this.data.articleList.length; i++){
+      if(article.id == this.data.articleList[i].id){
+        this.data.articleList[i].collected = collected
+      }
+    }
+    this.setData({
+      articleList: this.data.articleList
+    })
   }
 })

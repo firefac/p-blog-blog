@@ -8,14 +8,10 @@ Page({
     id: 0,
     article: {}
   },
-
-  // 页面分享
   onShareAppMessage: function() {
-    let that = this;
     return {
-      title: that.data.article.title,
-      desc: '唯爱与美食不可辜负',
-      path: '/pages/index/index?articleId=' + this.data.id
+      title: this.data.article.title,
+      path: '/pages/articleList/articleList?id=' + this.data.id
     }
   },
   onLoad: function(options) {

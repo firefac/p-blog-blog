@@ -22,11 +22,25 @@ Page({
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
-    this.getCollectArticleList()
-    this.getFootprintArticleList()
+
   },
   onReady: function() {
 
+  },
+  onShareAppMessage: function(res) {
+    if (res.from === 'button') {
+      var article = res.target.dataset.article
+      return {
+        title: article.title,
+        imageUrl: article.coverUrl,
+        path: '/pages/article/article?id=' + article.id
+      }
+    }
+
+    return {
+      title: '来架构师的小院，喝喝茶，谈谈技术',
+      path: '/pages/index/index'
+    }
   },
   onShow: function() {
 
@@ -38,15 +52,18 @@ Page({
         hasLogin: true
       });
 
-      let that = this;
-      util.request(api.UserIndex).then(function(res) {
-        if (res.errcode === '0') {
-          that.setData({
-            order: res.data.order
-          });
-        }
+      if(this.data.collectArticleList.length == 0){
+        this.getCollectArticleList()
+      }
+      if(this.data.footprintArticleList.length == 0){
+        this.getFootprintArticleList()
+      }
+    }else{
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
       });
-    }
+      return false;
+    };
   },
   onReachBottom() {
     if(this.data.tabIndex == 0){
@@ -90,6 +107,17 @@ Page({
         url: "/pages/auth/login/login"
       });
     }
+  },
+  goFeedback(e) {
+    if (this.data.hasLogin) {
+      wx.navigateTo({
+        url: "/pages/ucenter/feedback/feedback"
+      });
+    } else {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+    };
   },
   aboutUs: function() {
     wx.navigateTo({

@@ -20,14 +20,13 @@
     "backgroundTextStyle": "dark"
   },
   "tabBar": {
-    "custom": true,
     "backgroundColor": "#fafafa",
     "borderStyle": "white",
     "selectedColor": "#AB956D",
     "color": "#666",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/help/help",
         "iconPath": "static/images/home.png",
         "selectedIconPath": "static/images/home@selected.png",
         "text": "首页"
