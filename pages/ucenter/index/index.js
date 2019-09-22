@@ -69,7 +69,7 @@ Page({
     if(this.data.tabIndex == 0){
       if(this.data.collectLastPage){
         wx.showToast({
-          title: '没有更多文章了',
+          title: '没有更多收藏了',
           icon: 'none',
           duration: 2000
         });
@@ -82,7 +82,7 @@ Page({
     }else if(this.data.tabIndex == 1){
       if(this.data.footprintLastPage){
         wx.showToast({
-          title: '没有更多文章了',
+          title: '没有更多足迹了',
           icon: 'none',
           duration: 2000
         });

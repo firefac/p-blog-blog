@@ -1,3 +1,5 @@
+<wxs module="dateUtil" src="../../../utils/timeUtil.wxs"></wxs>
+
 <view class="container">
   <view class="profile-info" bindtap="goLogin">
     <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
@@ -22,36 +24,35 @@
     </view>
   </view>
 
-  <van-tabs sticky bind:click="switchCate" color="#AB956D">
+  <van-tabs sticky bind:click="switchCate" color="#FF6666">
     <van-tab title="收藏">
-      <view style="padding-bottom: 8rpx;" wx:for="{{collectArticleList}}" wx:for-item="item" wx:key="id">
-        <van-card
-          desc="{{dateUtil.dateFormat(item.createTime)}}"
-          title="{{item.title}}"
-          thumb="{{item.coverUrl}}"
-          thumb-mode="aspectFill"
-          thumb-link="../../article/article?id={{item.id}}">
-          <view slot="footer">
-            <button class="share-btn" data-article="{{item}}" open-type="share">
-              <van-button size="mini" icon="share"/>
-            </button>
-          </view>
-        </van-card>
+      <view class="article-card" wx:for="{{collectArticleList}}" wx:for-item="article" wx:key="articleId">
+        <navigator class="content" url="../article/article?id={{article.id}}">
+          <image class="cover" src="{{article.coverUrl}}" mode="aspectFill"></image>
+          <text class="title">{{article.title}}</text>
+          <text class="desc">{{article.content}}</text>
+        </navigator>
+        <view class="operation">
+          <text class="date">{{dateUtil.dateFormat(article.createTime)}}</text>
+          <button class="share-btn" data-article="{{article}}" open-type="share">
+            <van-button size="mini" icon="share"/>
+          </button>
+        </view>
       </view>
     </van-tab>
     <van-tab title="已读" >
-      <view style="padding-bottom: 8rpx;" wx:for="{{footprintArticleList}}" wx:for-item="item" wx:key="id">
-        <van-card
-          title="{{item.title}}"
-          thumb="{{item.coverUrl}}"
-          thumb-mode="aspectFill"
-          thumb-link="../../article/article?id={{item.id}}">
-          <view slot="footer">
-            <button class="share-btn" data-article="{{item}}" open-type="share">
+      <view class="article-card" wx:for="{{footprintArticleList}}" wx:for-item="article" wx:key="articleId">
+        <navigator class="content" url="../article/article?id={{article.id}}">
+          <image class="cover" src="{{article.coverUrl}}" mode="aspectFill"></image>
+          <text class="title">{{article.title}}</text>
+          <text class="desc">{{article.content}}</text>
+        </navigator>
+        <view class="operation">
+            <text class="date">{{dateUtil.dateFormat(article.createTime)}}</text>
+            <button class="share-btn" data-article="{{article}}" open-type="share">
               <van-button size="mini" icon="share"/>
             </button>
-        </view>
-        </van-card>
+          </view>
       </view>
     </van-tab>
   </van-tabs>

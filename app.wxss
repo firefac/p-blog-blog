@@ -65,3 +65,42 @@ view, text {
 .share-btn::after{
   border: 0px solid black;
 }
+
+.article-card{
+  margin: 0rpx 0rpx 150rpx 0rpx;
+  background: #ffffff;
+}
+
+.article-card .content {
+  width: 750rpx;
+  padding-bottom: 20rpx;
+}
+
+.article-card .operation {
+  padding: 20rpx 30rpx 0rpx 30rpx;
+}
+.article-card .operation .date {
+  font-size: 26rpx;
+  color:#666666;
+}
+.article-card .operation .share-btn {
+  float: right;
+}
+
+.article-card .content .cover {
+  width: 750rpx;
+  height: 375rpx;
+}
+
+.article-card .content .title {
+  font-size: 32rpx;
+  padding: 10rpx 30rpx 5rpx 30rpx;
+  display: block;
+}
+
+.article-card .content .desc {
+  font-size: 26rpx;
+  color:#CCCCCC;
+  padding: 0rpx 30rpx;
+  display: block;
+}

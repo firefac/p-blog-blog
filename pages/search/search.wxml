@@ -1,3 +1,5 @@
+<wxs module="dateUtil" src="../../utils/timeUtil.wxs"></wxs>
+
 <scroll-view class="container" style="height: 100%;">
   <view class="search-header">
     <view class="input-box">
@@ -17,16 +19,14 @@
 
   <view class="search-result" wx:if="{{ searchStatus && articleList.length}}">
     <view class="cate-item">
-      <view class="b">
-        <van-card
-          desc="{{dateUtil.dateFormat(article.createTime)}}"
-          title="{{article.title}}"
-          thumb="{{article.coverUrl}}"
-          thumb-mode="aspectFill"
-          thumb-link="../article/article?id={{item.id}}"
-          tag="{{article.hot === 1 ? '推荐' : ''}}"
-          wx:for="{{articleList}}" wx:for-item="article" wx:key="articleId">
-          <view slot="footer">
+      <view class="article-card" wx:for="{{articleList}}" wx:for-item="article" wx:key="articleId">
+        <navigator class="content" url="../article/article?id={{article.id}}">
+          <image class="cover" src="{{article.coverUrl}}" mode="aspectFill"></image>
+          <text class="title">{{article.title}}</text>
+          <text class="desc">{{article.content}}</text>
+        </navigator>
+        <view class="operation">
+            <text class="date">{{dateUtil.dateFormat(article.createTime)}}</text>
             <button class="share-btn" data-article="{{article}}" open-type="share">
               <van-button size="mini" icon="share"/>
             </button>
@@ -35,7 +35,6 @@
               <van-button size="mini" icon="star" wx:if="{{article.collected == 1}}" data-article="{{article}}" bindtap="uncollectArticle"/>
             </view>
           </view>
-        </van-card>
       </view>
     </view>
   </view>

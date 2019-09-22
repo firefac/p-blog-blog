@@ -1,11 +1,11 @@
 page {
   min-height: 100%;
-  background-color: #f4f4f4;
+  background-color: #fff;
 }
 
 .container {
   min-height: 100%;
-  background-color: #f4f4f4;
+  background-color: #fff;
 }
 
 .search-header {
@@ -176,7 +176,7 @@ page {
 }
 
 .cate-item {
-  margin-top: 175rpx;
+  margin-top: 80rpx;
   height: auto;
   overflow: hidden;
 }

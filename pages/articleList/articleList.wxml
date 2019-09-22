@@ -1,34 +1,25 @@
 <wxs module="dateUtil" src="../../utils/timeUtil.wxs"></wxs>
 
 <view class="container">
-  <view class="search">
-    <navigator url="/pages/ucenter/index/index">
-      <van-icon  name="contact" size="45rpx" />
-    </navigator>
-    <navigator url="/pages/search/search" class="input">
-      <image class="icon"></image>
-      <text class="txt">搜索</text>
-    </navigator>
-  </view>
   <view class="banner" wx:if="{{label!=null}}">
     <image src="{{label.coverUrl}}" background-size="cover"></image>
   </view>
-  <van-card
-    desc="{{dateUtil.dateFormat(article.createTime)}}"
-    title="{{article.title}}"
-    thumb="{{article.coverUrl}}"
-    thumb-mode="aspectFill"
-    thumb-link="../article/article?id={{article.id}}"
-    tag="{{article.hot === 1 ? '推荐' : ''}}"
-    wx:for="{{articleList}}" wx:for-item="article" wx:key="articleId">
-    <view slot="footer">
-      <button class="share-btn" data-article="{{article}}" open-type="share">
-        <van-button size="mini" icon="share"/>
-      </button>
-      <view class="share-btn">
-        <van-button size="mini" icon="star-o" wx:if="{{article.collected == 0}}" data-article="{{article}}" bindtap="collectArticle"/>
-        <van-button size="mini" icon="star" wx:if="{{article.collected == 1}}" data-article="{{article}}" bindtap="uncollectArticle"/>
+  <view class="article-follow">—— {{label.name}} ——</view>
+  <view class="article-card" wx:for="{{articleList}}" wx:for-item="article" wx:key="articleId">
+    <navigator class="content" url="../article/article?id={{article.id}}">
+      <image class="cover" src="{{article.coverUrl}}" mode="aspectFill"></image>
+      <text class="title">{{article.title}}</text>
+      <text class="desc">{{article.content}}</text>
+    </navigator>
+    <view class="operation">
+        <text class="date">{{dateUtil.dateFormat(article.createTime)}}</text>
+        <button class="share-btn" data-article="{{article}}" open-type="share">
+          <van-button size="mini" icon="share"/>
+        </button>
+        <view class="share-btn">
+          <van-button size="mini" icon="star-o" wx:if="{{article.collected == 0}}" data-article="{{article}}" bindtap="collectArticle"/>
+          <van-button size="mini" icon="star" wx:if="{{article.collected == 1}}" data-article="{{article}}" bindtap="uncollectArticle"/>
+        </view>
       </view>
-    </view>
-  </van-card>
+  </view>
 </view>

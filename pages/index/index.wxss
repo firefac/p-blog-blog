@@ -1,7 +1,11 @@
+.container{
+  height: 100%;
+  width: 100%;
+}
+
 .container .banner {
   width: 750rpx;
   height: 417rpx;
-  margin-bottom: 50rpx;
 }
 
 .container .banner image {
@@ -16,38 +20,11 @@
   display: block;
 }
 
-.cate-nav {
-  z-index: 1000;
-}
-
-.cate-nav-body {
-  height: 84rpx;
-  white-space: nowrap;
-  background: #fff;
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
-  overflow: hidden;
-}
-
-.cate-nav .item {
-  display: inline-block;
-  height: 84rpx;
-  min-width: 130rpx;
-  padding: 0 15rpx;
-}
-
-.cate-nav .item .name {
-  display: block;
-  height: 84rpx;
-  padding: 0 20rpx;
-  line-height: 84rpx;
-  color: #333;
-  font-size: 30rpx;
-  width: auto;
-}
-
-.cate-nav .item.active .name {
-  color: #ab956d;
-  border-bottom: 2px solid #ab956d;
+.container .article-follow{
+  line-height: 200rpx;
+  font-size: 40rpx;
+  text-align: center;
+  color: #666666;
 }
 
 .cate-item {
@@ -64,74 +41,51 @@
   margin-right: 30rpx;
 }
 
-.cate-item .h {
-  height: 145rpx;
+.article-card{
+  margin: 0rpx 0rpx 150rpx 0rpx;
+  background: #ffffff;
+}
+
+.article-card .content {
   width: 750rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding-bottom: 20rpx;
 }
 
-.cate-item .h .name {
-  display: block;
-  height: 35rpx;
-  margin-bottom: 18rpx;
-  font-size: 27rpx;
-  color: #333;
+.article-card .operation {
+  padding: 20rpx 30rpx 0rpx 30rpx;
+}
+.article-card .operation .date {
+  font-size: 26rpx;
+  color:#666666;
+}
+.article-card .operation .share-btn {
+  float: right;
 }
 
-.cate-item .h .desc {
-  display: block;
-  height: 24rpx;
-  font-size: 24rpx;
-  color: #999;
-}
-
-.cate-item .b {
+.article-card .content .cover {
   width: 750rpx;
-  padding: 0 6.25rpx;
-  height: auto;
-  overflow: hidden;
+  height: 375rpx;
 }
 
-.cate-item .b .item {
-  float: left;
-  background: #fff;
-  width: 365rpx;
-  margin-bottom: 6.25rpx;
-  padding-bottom: 33.333rpx;
-  height: auto;
-  overflow: hidden;
-  text-align: center;
-}
-
-.cate-item .b .item-b {
-  margin-left: 6.25rpx;
-}
-
-.cate-item .item .img {
-  width: 302rpx;
-  height: 302rpx;
-}
-
-.cate-item .item .name {
+.article-card .content .title {
+  font-size: 32rpx;
+  padding: 10rpx 30rpx 5rpx 30rpx;
   display: block;
-  width: 365.625rpx;
-  height: 35rpx;
-  margin: 11.5rpx 0 22rpx 0;
-  text-align: center;
-  overflow: hidden;
-  padding: 0 20rpx;
-  font-size: 27rpx;
-  color: #333;
 }
 
-.cate-item .item .price {
+.article-card .content .desc {
+  font-size: 26rpx;
+  color:#CCCCCC;
+  padding: 0rpx 30rpx;
   display: block;
-  width: 365.625rpx;
-  height: 30rpx;
+}
+
+.noContent{
+  display: block;
+  line-height: 80rpx;
   text-align: center;
+  margin-top: 100rpx;
   font-size: 30rpx;
-  color: #ab956d;
+  color: #666666;
 }
+

@@ -1,18 +1,16 @@
 page {
   height: 100%;
   width: 100%;
-  background: #f4f4f4;
 }
 
 .container {
-  background: #f4f4f4;
   height: auto;
   overflow: hidden;
   width: 100%;
 }
 
 .profile-info {
-  background-color: #ab956d;
+  background-color: #336699;
   color: #f4f4f4;
   display: flex;
   align-items: center;
@@ -34,8 +32,7 @@ page {
 
 .profile-info .name {
   display: block;
-  height: 45rpx;
-  line-height: 45rpx;
+  line-height: 85rpx;
   color: #fff;
   font-size: 37.5rpx;
   margin-bottom: 10rpx;
@@ -97,7 +94,6 @@ page {
   align-items: center;
   background: #fff;
   padding-top: 55rpx;
-  margin-bottom: 50rpx;
 }
 
 .user_column_item {

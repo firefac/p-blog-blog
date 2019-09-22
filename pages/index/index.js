@@ -162,6 +162,19 @@ Page({
   },
   onReachBottom() {
     if(this.data.tabIndex != 0){
+      var group = this.data.groups[this.data.tabIndex - 1]
+
+      if(group.lastPage){
+        wx.showToast({
+          title: '没有更多文章了',
+          icon: 'none',
+          duration: 2000
+        });
+        return false;
+      }else{
+        group.pageNum = group.pageNum + 1
+      }
+      
       this.getGroupArticleList()
       return false;
     }

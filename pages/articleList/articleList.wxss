@@ -2,3 +2,10 @@
   width: 100%;
   height: 417rpx;
 }
+
+.article-follow{
+  line-height: 200rpx;
+  font-size: 40rpx;
+  text-align: center;
+  color: #666666;
+}
