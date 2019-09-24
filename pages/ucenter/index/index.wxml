@@ -27,8 +27,8 @@
   <van-tabs sticky bind:click="switchCate" color="#FF6666">
     <van-tab title="收藏">
       <view class="article-card" wx:for="{{collectArticleList}}" wx:for-item="article" wx:key="articleId">
-        <navigator class="content" url="../article/article?id={{article.id}}">
-          <image class="cover" src="{{article.coverUrl}}" mode="aspectFill"></image>
+        <navigator class="content" url="../../article/article?id={{article.id}}">
+          <image class="cover" src="{{article.coverUrl}}" mode="widthFix"></image>
           <text class="title">{{article.title}}</text>
           <text class="desc">{{article.content}}</text>
         </navigator>
@@ -42,8 +42,8 @@
     </van-tab>
     <van-tab title="已读" >
       <view class="article-card" wx:for="{{footprintArticleList}}" wx:for-item="article" wx:key="articleId">
-        <navigator class="content" url="../article/article?id={{article.id}}">
-          <image class="cover" src="{{article.coverUrl}}" mode="aspectFill"></image>
+        <navigator class="content" url="../../article/article?id={{article.id}}">
+          <image class="cover" src="{{article.coverUrl}}" mode="widthFix"></image>
           <text class="title">{{article.title}}</text>
           <text class="desc">{{article.content}}</text>
         </navigator>

@@ -89,7 +89,7 @@ view, text {
 
 .article-card .content .cover {
   width: 750rpx;
-  height: 375rpx;
+  height: 100%;
 }
 
 .article-card .content .title {

@@ -7,7 +7,7 @@
   <view class="article-follow">—— {{label.name}} ——</view>
   <view class="article-card" wx:for="{{articleList}}" wx:for-item="article" wx:key="articleId">
     <navigator class="content" url="../article/article?id={{article.id}}">
-      <image class="cover" src="{{article.coverUrl}}" mode="aspectFill"></image>
+      <image class="cover" src="{{article.coverUrl}}" mode="widthFix"></image>
       <text class="title">{{article.title}}</text>
       <text class="desc">{{article.content}}</text>
     </navigator>

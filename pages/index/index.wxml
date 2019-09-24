@@ -21,7 +21,7 @@
       <view class="article-follow">—— 文章 ——</view>
       <view class="article-card" wx:for="{{articles}}" wx:for-item="item" wx:key="id">
         <navigator class="content" url="../article/article?id={{item.id}}">
-          <image class="cover" src="{{item.coverUrl}}" mode="aspectFill"></image>
+          <image class="cover" src="{{item.coverUrl}}" mode="widthFix"></image>
           <text class="title">{{item.title}}</text>
           <text class="desc">{{item.content}}</text>
         </navigator>
@@ -51,7 +51,7 @@
         </view>
         <view class="article-card" wx:for="{{item.articleList}}" wx:for-item="article" wx:key="articleId">
           <navigator class="content" url="../article/article?id={{article.id}}">
-            <image class="cover" src="{{article.coverUrl}}" mode="aspectFill"></image>
+            <image class="cover" src="{{article.coverUrl}}" mode="widthFix"></image>
             <text class="title">{{article.title}}</text>
             <text class="desc">{{article.content}}</text>
           </navigator>
