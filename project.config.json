@@ -53,24 +53,6 @@
 				},
 				{
 					"id": -1,
-					"name": "我的收藏",
-					"pathName": "pages/ucenter/collect/collect",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "我的地址",
-					"pathName": "pages/ucenter/address/address",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "我的地址添加",
-					"pathName": "pages/ucenter/addressAdd/addressAdd",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "登录",
 					"pathName": "pages/auth/login/login",
 					"query": ""
