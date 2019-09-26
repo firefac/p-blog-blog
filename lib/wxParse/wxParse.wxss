@@ -65,6 +65,7 @@ view{
   margin-bottom: .04em;
 }
 
+.wxParse-p{min-height: 50rpx; margin: 10rpx 0rpx;}
 .wxParse-h1, .wxParse-h2, .wxParse-h3, .wxParse-h4, .wxParse-h5, .wxParse-h6, .wxParse-b, .wxParse-strong  { font-weight: bolder }
 
 .wxParse-i,.wxParse-cite,.wxParse-em,.wxParse-var,.wxParse-address{font-style:italic}
